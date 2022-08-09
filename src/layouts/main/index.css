@@ -1,0 +1,13 @@
+.header{
+  
+   
+    font-weight: bold;
+    background-color: black;
+    min-height: 10vh;
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
