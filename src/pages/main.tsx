@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
-
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBBtn,
-} from "mdb-react-ui-kit";
 import * as SearchServiceHandler from "../api/handlers/SearchServiceHandler";
 import * as WeatherConditionsServiceHandler from "../api/handlers/WeatherConditionServiceHandler";
 import * as WeatherMapsServiceHandler from "../api/handlers/WeatherMapsServiceHandler";
 import commonStyles from "../styles/common.module.css";
-import { REACT_APP_API_KEY, REACT_APP_API_URL } from "../utils/constants";
 import ConditionsComponent from "../components/ConditionsComponent";
 import SearchComponent from "../components/SearchComponent";
+import LabeledInputComponent from "../components/LabeledInputComponent";
 function MainPage(this: any) {
   const [search, setSearch] = React.useState("");
   const [lat, setLat] = useState(0);
@@ -103,7 +95,7 @@ function MainPage(this: any) {
     fetchCurrentWeather(result.lat, result.lon);
     fetch7DayWeather(result.lat, result.lon);
   };
-  const fetchWeatherByLocation = async () => {
+  const fetchWeatherByLocation = () => {
     SearchServiceHandler.search(search, onSuccessWeatherByLocation);
   };
 
@@ -128,16 +120,18 @@ function MainPage(this: any) {
   }, [lat, long]);
   return (
     <div className={commonStyles.PageLayout}>
-    
-      <SearchComponent placeholder="Place" onSubmit={handleSubmit} onChange={handleChange} search={search}></SearchComponent>
+      <SearchComponent
+        placeholder="Place"
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        search={search}
+      ></SearchComponent>
       <div className={commonStyles.row}>
         <div className={commonStyles.column}>
           <div className={`${commonStyles.card}`}>
             <text className={commonStyles.h2}>
-              {" "}
               {`Today’s Forecast for ${locationName}`}
             </text>
-
             <div className={commonStyles.row}>
               <ConditionsComponent
                 currentTemp={currentTemp}
@@ -153,13 +147,13 @@ function MainPage(this: any) {
             </button>
 
             {expandedView && (
-              <div className={commonStyles.column}>
-                <text>{`Wind: ${windSpeed}`}</text>
-                <text>{`Humidity: ${humidity} `}</text>
-                <text>{`Pressure: ${pressure}`}</text>
-                <text>{`Sunrise: ${sunrise}`}</text>
-                <text>{`Sunset: ${sunset}`}</text>
-              </div>
+              <ConditionsComponent
+                windSpeed={windSpeed}
+                pressure={pressure}
+                humidity={humidity}
+                sunrise={sunrise}
+                sunset={sunset}
+              ></ConditionsComponent>
             )}
           </div>
 
@@ -184,13 +178,12 @@ function MainPage(this: any) {
         </div>
         <div className={commonStyles.column}>
           <div className={`${commonStyles.card}`}>
-            map
+            <text className={commonStyles.h2}>{`Weather Map`}</text>
             <div className={`${commonStyles.row}`}>
               <button onClick={getWeatherMapForClouds}>Clouds</button>
               <button onClick={getWeatherMapForPrecipitation}>
                 Precipitation
               </button>
-
               <button onClick={getWeatherMapForTemp}>Temp</button>
             </div>
             <div>
@@ -200,26 +193,21 @@ function MainPage(this: any) {
           <div className={`${commonStyles.card}`}>
             <text className={commonStyles.h2}>Temperature Converter</text>
             <div className={`${commonStyles.row}`}>
-              <label>
-                Celsius:
-                <input
-                  className={commonStyles.fullWidth}
-                  placeholder=" Celsius:"
-                  type="number"
-                  value={celsiusTemp}
-                  onChange={onChangeCelsiusTemp}
-                />
-              </label>
-              <label>
-                Fahrenheit:
-                <input
-                  className={commonStyles.fullWidth}
-                  placeholder=" Fahrenheit:"
-                  type="number"
-                  value={fahrenheitTemp}
-                  onChange={onChangeFahrenheitTemp}
-                />
-              </label>
+                <LabeledInputComponent
+                placeholder="Celsius"
+                label="Celsius: "
+                type="number"
+                onChange={onChangeCelsiusTemp}
+                value={celsiusTemp}
+                ></LabeledInputComponent>
+               <LabeledInputComponent
+            placeholder="Fahrenheit"
+               label="Fahrenheit: "
+                type="number"
+                onChange={onChangeFahrenheitTemp}
+                value={fahrenheitTemp}
+                ></LabeledInputComponent>
+             
             </div>
           </div>
         </div>

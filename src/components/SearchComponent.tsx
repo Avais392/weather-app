@@ -30,4 +30,5 @@ SearchComponent.defaultProps = {
   placeholder: "",
   onSubmit: () => {},
   onChange: () => {},
+  
 };
