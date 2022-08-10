@@ -36,7 +36,7 @@ export default function ConditionsComponent(props: Props) {
         <text>{`Weather Condition: ${weatherCondition} `}</text>
       )}
       {!!maxTemp && !!minTemp && (
-        <text>{`High & Low Temp: ${maxTemp} & ${minTemp}`}</text>
+        <text style={{whiteSpace: 'pre-wrap', }}>{`High & Low Temp: ${maxTemp} & ${minTemp}`}</text>
       )}
       {!!windSpeed && <text>{`Wind: ${windSpeed}`}</text>}
       {!!humidity && <text>{`Humidity: ${humidity} `}</text>}

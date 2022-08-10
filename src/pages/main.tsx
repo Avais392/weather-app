@@ -126,8 +126,8 @@ function MainPage(this: any) {
         onChange={handleChange}
         search={search}
       ></SearchComponent>
-      <div className={commonStyles.row}>
-        <div className={commonStyles.column}>
+      <div className={commonStyles.mainView} >
+        <div className={commonStyles.left} >
           <div className={`${commonStyles.card}`}>
             <text className={commonStyles.h2}>
               {`Today’s Forecast for ${locationName}`}
@@ -166,6 +166,7 @@ function MainPage(this: any) {
             >
               {sevendayForecast.map((item: any) => (
                 <ConditionsComponent
+                  key={item.date}
                   date={item.date}
                   currentTemp={currentTemp}
                   weatherCondition={item.weatherCondition}
@@ -176,7 +177,7 @@ function MainPage(this: any) {
             </div>
           </div>
         </div>
-        <div className={commonStyles.column}>
+        <div className={commonStyles.right}>
           <div className={`${commonStyles.card}`}>
             <text className={commonStyles.h2}>{`Weather Map`}</text>
             <div className={`${commonStyles.row}`}>
@@ -193,21 +194,20 @@ function MainPage(this: any) {
           <div className={`${commonStyles.card}`}>
             <text className={commonStyles.h2}>Temperature Converter</text>
             <div className={`${commonStyles.row}`}>
-                <LabeledInputComponent
+              <LabeledInputComponent
                 placeholder="Celsius"
                 label="Celsius: "
                 type="number"
                 onChange={onChangeCelsiusTemp}
                 value={celsiusTemp}
-                ></LabeledInputComponent>
-               <LabeledInputComponent
-            placeholder="Fahrenheit"
-               label="Fahrenheit: "
+              ></LabeledInputComponent>
+              <LabeledInputComponent
+                placeholder="Fahrenheit"
+                label="Fahrenheit: "
                 type="number"
                 onChange={onChangeFahrenheitTemp}
                 value={fahrenheitTemp}
-                ></LabeledInputComponent>
-             
+              ></LabeledInputComponent>
             </div>
           </div>
         </div>

@@ -19,6 +19,18 @@
     flex-direction: row;
   
 }
+.mainView{
+    display: flex;
+    flex-direction: row;
+}
+.left{
+   width: 50%;
+   
+}
+.right{
+    flex:1;
+   
+}
 .column{
     display: flex;
     flex-direction: column;
@@ -50,13 +62,27 @@
 
   overflow-x: scroll;
   white-space: nowrap;
- 
+ flex:0.5;
   /* text-align: justify; */
   /* padding: 20px; */
-  width: 500px;
+  /* width: 500px; */
   justify-content:start ;
  
 }
 .marginRight10{
     margin: 10px;
 }
+
+@media (max-width: 768px){
+
+   .mainView{
+    display: flex;
+    flex-direction: column;
+   
+   }
+   .left{
+    width: 100%;
+    
+ }
+    
+    }
