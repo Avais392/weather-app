@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as SearchServiceHandler from "../api/handlers/SearchServiceHandler";
 import * as WeatherConditionsServiceHandler from "../api/handlers/WeatherConditionServiceHandler";
 import * as WeatherMapsServiceHandler from "../api/handlers/WeatherMapsServiceHandler";
+import * as propTypes from '../propTypes/weatherConditions'
 import commonStyles from "../styles/common.module.css";
 import ConditionsComponent from "../components/ConditionsComponent";
 import SearchComponent from "../components/SearchComponent";
@@ -56,7 +57,8 @@ function MainPage(this: any) {
     fetchWeatherByLocation();
   };
 
-  const onSuccessCurrentWeather = (result: any) => {
+
+  const onSuccessCurrentWeather = (result: propTypes.currentWeatherConditionsProp) => {
     setLocationName(result.name);
     setCurrentTemp(result.main.temp);
     setMinTemp(result.main.temp_min);
