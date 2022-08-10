@@ -5,8 +5,8 @@
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+### Screenshots attached for web as well as responsive version
 
+https://github.com/Avais392/weather-app/blob/master/Responsive.png
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+https://github.com/Avais392/weather-app/blob/master/Webview.png
